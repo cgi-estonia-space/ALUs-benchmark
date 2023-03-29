@@ -1,0 +1,276 @@
+<graph id="Coherence">
+    <version>1.0</version>
+    <node id="read_reference">
+        <operator>Read</operator>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <file>${reference}</file>
+        </parameters>
+    </node>
+    <node id="read_secondary">
+        <operator>Read</operator>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <file>${secondary}</file>
+        </parameters>
+    </node>
+    <node id="orbit_reference">
+        <operator>Apply-Orbit-File</operator>
+        <sources>
+            <sourceProduct refid="read_reference"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <orbitType>Sentinel Precise (Auto Download)</orbitType>
+            <polyDegree>3</polyDegree>
+            <continueOnFail>false</continueOnFail>
+        </parameters>
+    </node>
+    <node id="orbit_secondary">
+        <operator>Apply-Orbit-File</operator>
+        <sources>
+            <sourceProduct refid="read_secondary"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <orbitType>Sentinel Precise (Auto Download)</orbitType>
+            <polyDegree>3</polyDegree>
+            <continueOnFail>false</continueOnFail>
+        </parameters>
+    </node>
+    <node id="split_reference_iw1">
+        <operator>TOPSAR-Split</operator>
+        <sources>
+            <sourceProduct refid="orbit_reference"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <subswath>IW1</subswath>
+            <selectedPolarisations>${polarisation}</selectedPolarisations>
+            <firstBurstIndex>1</firstBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
+        </parameters>
+    </node>
+    <node id="split_secondary_iw1">
+        <operator>TOPSAR-Split</operator>
+        <sources>
+            <sourceProduct refid="orbit_secondary"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <subswath>IW1</subswath>
+            <selectedPolarisations>${polarisation}</selectedPolarisations>
+            <firstBurstIndex>1</firstBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
+        </parameters>
+    </node>
+    <node id="back-geocoding_iw1">
+        <operator>Back-Geocoding</operator>
+        <sources>
+            <sourceProduct refid="split_reference_iw1"/>
+            <sourceProduct.1 refid="split_secondary_iw1"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <demName>SRTM 3Sec</demName>
+            <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
+            <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
+            <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
+        </parameters>
+    </node>
+    <node id="coherence_iw1">
+        <operator>Coherence</operator>
+        <sources>
+            <sourceProduct refid="back-geocoding_iw1"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <cohWinRg>15</cohWinRg>
+            <cohWinAz>4</cohWinAz>
+            <subtractFlatEarthPhase>true</subtractFlatEarthPhase>
+            <srpPolynomialDegree>5</srpPolynomialDegree>
+            <srpNumberPoints>501</srpNumberPoints>
+            <orbitDegree>3</orbitDegree>
+            <demName>SRTM 3Sec</demName>
+            <singleMaster>true</singleMaster>
+        </parameters>
+    </node>
+    <node id="deburst_iw1">
+        <operator>TOPSAR-Deburst</operator>
+        <sources>
+            <sourceProduct refid="coherence_iw1"/>
+        </sources>
+    </node>
+
+    <node id="split_reference_iw2">
+        <operator>TOPSAR-Split</operator>
+        <sources>
+            <sourceProduct refid="orbit_reference"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <subswath>IW2</subswath>
+            <selectedPolarisations>${polarisation}</selectedPolarisations>
+            <firstBurstIndex>1</firstBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
+        </parameters>
+    </node>
+    <node id="split_secondary_iw2">
+        <operator>TOPSAR-Split</operator>
+        <sources>
+            <sourceProduct refid="orbit_secondary"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <subswath>IW2</subswath>
+            <selectedPolarisations>${polarisation}</selectedPolarisations>
+            <firstBurstIndex>1</firstBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
+        </parameters>
+    </node>
+    <node id="back-geocoding_iw2">
+        <operator>Back-Geocoding</operator>
+        <sources>
+            <sourceProduct refid="split_reference_iw2"/>
+            <sourceProduct.1 refid="split_secondary_iw2"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <demName>SRTM 3Sec</demName>
+            <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
+            <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
+            <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
+        </parameters>
+    </node>
+    <node id="coherence_iw2">
+        <operator>Coherence</operator>
+        <sources>
+            <sourceProduct refid="back-geocoding_iw2"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <cohWinRg>15</cohWinRg>
+            <cohWinAz>4</cohWinAz>
+            <subtractFlatEarthPhase>true</subtractFlatEarthPhase>
+            <srpPolynomialDegree>5</srpPolynomialDegree>
+            <srpNumberPoints>501</srpNumberPoints>
+            <orbitDegree>3</orbitDegree>
+            <demName>SRTM 3Sec</demName>
+            <singleMaster>true</singleMaster>
+        </parameters>
+    </node>
+    <node id="deburst_iw2">
+        <operator>TOPSAR-Deburst</operator>
+        <sources>
+            <sourceProduct refid="coherence_iw2"/>
+        </sources>
+    </node>
+
+    <node id="split_reference_iw3">
+        <operator>TOPSAR-Split</operator>
+        <sources>
+            <sourceProduct refid="orbit_reference"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <subswath>IW3</subswath>
+            <selectedPolarisations>${polarisation}</selectedPolarisations>
+            <firstBurstIndex>1</firstBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
+        </parameters>
+    </node>
+    <node id="split_secondary_iw3">
+        <operator>TOPSAR-Split</operator>
+        <sources>
+            <sourceProduct refid="orbit_secondary"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <subswath>IW3</subswath>
+            <selectedPolarisations>${polarisation}</selectedPolarisations>
+            <firstBurstIndex>1</firstBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
+        </parameters>
+    </node>
+    <node id="back-geocoding_iw3">
+        <operator>Back-Geocoding</operator>
+        <sources>
+            <sourceProduct refid="split_reference_iw3"/>
+            <sourceProduct.1 refid="split_secondary_iw3"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <demName>SRTM 3Sec</demName>
+            <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
+            <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
+            <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
+        </parameters>
+    </node>
+    <node id="coherence_iw3">
+        <operator>Coherence</operator>
+        <sources>
+            <sourceProduct refid="back-geocoding_iw3"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <cohWinRg>15</cohWinRg>
+            <cohWinAz>4</cohWinAz>
+            <subtractFlatEarthPhase>true</subtractFlatEarthPhase>
+            <srpPolynomialDegree>5</srpPolynomialDegree>
+            <srpNumberPoints>501</srpNumberPoints>
+            <orbitDegree>3</orbitDegree>
+            <demName>SRTM 3Sec</demName>
+            <singleMaster>true</singleMaster>
+        </parameters>
+    </node>
+    <node id="deburst_iw3">
+        <operator>TOPSAR-Deburst</operator>
+        <sources>
+            <sourceProduct refid="coherence_iw3"/>
+        </sources>
+    </node>
+
+    <node id="merge">
+      <operator>TOPSAR-Merge</operator>
+      <sources>
+        <sourceProduct refid="deburst_iw1"/>
+        <sourceProduct.1 refid="deburst_iw2"/>
+        <sourceProduct.2 refid="deburst_iw3"/>
+      </sources>
+      <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      </parameters>
+    </node>
+
+    <node id="terrain-correction">
+        <operator>Terrain-Correction</operator>
+        <sources>
+            <sourceProduct refid="merge"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <sourceBands/>
+            <demName>SRTM 3Sec</demName>
+            <externalDEMNoDataValue>0.0</externalDEMNoDataValue>
+            <externalDEMApplyEGM>true</externalDEMApplyEGM>
+            <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
+            <imgResamplingMethod>BILINEAR_INTERPOLATION</imgResamplingMethod>
+            <pixelSpacingInMeter>0.0</pixelSpacingInMeter>
+            <pixelSpacingInDegree>0.0</pixelSpacingInDegree>
+            <mapProjection>
+                GEOGCS["WGS84(DD)", DATUM["WGS84", SPHEROID["WGS84", 6378137.0, 298.257223563]], PRIMEM["Greenwich", 0.0], UNIT["degree", 0.017453292519943295], AXIS["Geodetic longitude", EAST], AXIS["Geodetic latitude", NORTH]]
+            </mapProjection>
+            <alignToStandardGrid>false</alignToStandardGrid>
+            <standardGridOriginX>0.0</standardGridOriginX>
+            <standardGridOriginY>0.0</standardGridOriginY>
+            <nodataValueAtSea>true</nodataValueAtSea>
+            <saveDEM>false</saveDEM>
+            <saveLatLon>false</saveLatLon>
+            <saveIncidenceAngleFromEllipsoid>false</saveIncidenceAngleFromEllipsoid>
+            <saveLocalIncidenceAngle>false</saveLocalIncidenceAngle>
+            <saveProjectedLocalIncidenceAngle>false</saveProjectedLocalIncidenceAngle>
+            <saveSelectedSourceBand>true</saveSelectedSourceBand>
+            <saveLayoverShadowMask>false</saveLayoverShadowMask>
+            <applyRadiometricNormalization>false</applyRadiometricNormalization>
+            <saveSigmaNought>false</saveSigmaNought>
+            <saveGammaNought>false</saveGammaNought>
+            <saveBetaNought>false</saveBetaNought>
+            <incidenceAngleForSigma0>Use projected local incidence angle from DEM</incidenceAngleForSigma0>
+            <incidenceAngleForGamma0>Use projected local incidence angle from DEM</incidenceAngleForGamma0>
+            <auxFile>Latest Auxiliary File</auxFile>
+            <externalAuxFile/>
+        </parameters>
+    </node>
+    <node id="write">
+        <operator>Write</operator>
+        <sources>
+            <sourceProduct refid="terrain-correction"/>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <file>${output}</file>
+            <formatName>GeoTIFF</formatName>
+        </parameters>
+    </node>
+</graph>
