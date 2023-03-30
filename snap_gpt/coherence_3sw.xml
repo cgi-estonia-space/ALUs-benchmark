@@ -65,7 +65,7 @@
             <sourceProduct.1 refid="split_secondary_iw1"/>
         </sources>
         <parameters class="com.bc.ceres.binding.dom.XppDomElement">
-            <demName>SRTM 3Sec</demName>
+            <demName>${dem}</demName>
             <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
             <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
             <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
@@ -83,7 +83,7 @@
             <srpPolynomialDegree>5</srpPolynomialDegree>
             <srpNumberPoints>501</srpNumberPoints>
             <orbitDegree>3</orbitDegree>
-            <demName>SRTM 3Sec</demName>
+            <demName>${dem}</demName>
             <singleMaster>true</singleMaster>
         </parameters>
     </node>
@@ -125,7 +125,7 @@
             <sourceProduct.1 refid="split_secondary_iw2"/>
         </sources>
         <parameters class="com.bc.ceres.binding.dom.XppDomElement">
-            <demName>SRTM 3Sec</demName>
+            <demName>${dem}</demName>
             <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
             <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
             <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
@@ -143,7 +143,7 @@
             <srpPolynomialDegree>5</srpPolynomialDegree>
             <srpNumberPoints>501</srpNumberPoints>
             <orbitDegree>3</orbitDegree>
-            <demName>SRTM 3Sec</demName>
+            <demName>${dem}</demName>
             <singleMaster>true</singleMaster>
         </parameters>
     </node>
@@ -185,7 +185,7 @@
             <sourceProduct.1 refid="split_secondary_iw3"/>
         </sources>
         <parameters class="com.bc.ceres.binding.dom.XppDomElement">
-            <demName>SRTM 3Sec</demName>
+            <demName>${dem}</demName>
             <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
             <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
             <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
@@ -203,7 +203,7 @@
             <srpPolynomialDegree>5</srpPolynomialDegree>
             <srpNumberPoints>501</srpNumberPoints>
             <orbitDegree>3</orbitDegree>
-            <demName>SRTM 3Sec</demName>
+            <demName>${dem}</demName>
             <singleMaster>true</singleMaster>
         </parameters>
     </node>
@@ -232,7 +232,7 @@
         </sources>
         <parameters class="com.bc.ceres.binding.dom.XppDomElement">
             <sourceBands/>
-            <demName>SRTM 3Sec</demName>
+            <demName>${dem}</demName>
             <externalDEMNoDataValue>0.0</externalDEMNoDataValue>
             <externalDEMApplyEGM>true</externalDEMApplyEGM>
             <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>

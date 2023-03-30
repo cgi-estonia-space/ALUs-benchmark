@@ -24,7 +24,8 @@ if [ $# -eq 4 ]; then
     eval "$4"
 fi
 snap_cmd_log=$output_dir/snap_gpt_cmd.txt
-(time $snap_gpt_cmd) 2>&1 | tee $snap_cmd_log 
+# 'eval' - in order to respect spaces in 'dem' variable
+(time eval "$snap_gpt_cmd") 2>&1 | tee $snap_cmd_log 
 if [ $# -eq 4 ]; then
     echo "Calling $4"
     eval "$4"
