@@ -41,7 +41,7 @@
             <sourceProduct refid="read_reference"/>
         </sources>
         <parameters class="com.bc.ceres.binding.dom.XppDomElement">
-            <subswath>${sw}</subswath>
+            <subswath>${subswath}</subswath>
             <selectedPolarisations>${polarisation}</selectedPolarisations>
             <firstBurstIndex>${b_ref1}</firstBurstIndex>
             <lastBurstIndex>${b_ref2}</lastBurstIndex>
@@ -53,7 +53,7 @@
             <sourceProduct refid="read_secondary"/>
         </sources>
         <parameters class="com.bc.ceres.binding.dom.XppDomElement">
-            <subswath>${sw}</subswath>
+            <subswath>${subswath}</subswath>
             <selectedPolarisations>${polarisation}</selectedPolarisations>
             <firstBurstIndex>${b_sec1}</firstBurstIndex>
             <lastBurstIndex>${b_sec2}</lastBurstIndex>
