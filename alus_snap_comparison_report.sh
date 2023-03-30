@@ -61,7 +61,7 @@ do
         echo -n $stat_entry >> $combined_stats_file
         echo -n " |" >> $combined_stats_file
     done
-    time_measured=$(grep "real" ${cmd_logs[i]}  | cut -f2 -d'm' | sed 's/s//g')
+    time_measured=$(grep "real" ${cmd_logs[i]}  | awk -F" " '{ print $2 }' | sed 's/m/:/g' | sed 's/s//g')
     echo " $time_measured |" >> $combined_stats_file
 done
 
