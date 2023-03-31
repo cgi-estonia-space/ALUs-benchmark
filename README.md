@@ -3,6 +3,15 @@
 
 Various scripts/utilities are gathered here to facilitate benchmarking and validation and comparisons of the ALUs results
 
+Validation datasets can be easily fetched (along with necessary aux files):
+`aws s3 sync s3://alus-goods-set/validation . --no-sign-request`
+
+For SNAP based comparisons it is necessary to increase JAI cache size.
+In `~/snap/etc/snap.properties` set `snap.jai.tileCacheSize=10240` to something large, like 10GB in this example, 
+less can work well too, but default 1GB will prolong coherence results ALOT, might even get stuck.
+Also SNAP requires about 70GB of RAM in order to process all 3 subswaths for coherence, less for other routines/areas.
+`snap.parallelism` is left default (commented out), since JAVA can detect available cores correct.
+
 ## alus_snap_comparison_report.sh
 
 First a SNAP GPT command and then the respective ALUs command shall be supplied. The directory for the output results as well.
