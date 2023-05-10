@@ -39,8 +39,7 @@ results=($(find $output_dir -maxdepth 1 -name "*.tif" -printf "%T@\t%p\n" | sort
 product_base_name="${results[-1]%.*}"
 snap_no_data_fn=${product_base_name}_snap.tif
 
-
-if [[ -z "${NO_RASTCOMP}" ]]; then
+if [[ -z "${NO_SNAP_NODATA_CONVERT}" ]]; then
     echo "creating NODATA to SNAP results..."
     gdal_calc.py -A ${results[-2]} --outfile=$snap_no_data_fn --calc="A*(A>0)" --NoDataValue=0
 fi
