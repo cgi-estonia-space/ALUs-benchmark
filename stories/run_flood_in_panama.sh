@@ -79,26 +79,26 @@ scenario="calibration_1sw_srtm3_ramdisk"
 benchmark_results_dir="${datasets_dir}/${scenarios_results}/${scenario}"
 rm -rf ${benchmark_results_dir}/*
 NO_RASTCOMP=1 ./alus_snap_comparison_report.sh "gpt ${benchmark_scripts_dir}/snap_gpt/calibration_1sw_bindex.xml -Poutput=${benchmark_results_dir}/snap_cal.tif -Psubswath=${single_swath} -Pinput=${scene_sec}/manifest.safe ${calib_type_snap} -Pbi1=1 -Pbi2=10 -Ppolarisation=${polarization} -Pdem=\"SRTM 3Sec\"" "alus-cal -i ${scene_sec} -o ${benchmark_results_dir} --sw ${single_swath} -p ${polarization} -t ${calib_type} ${dem_files_land} --ll info" $benchmark_results_dir
-cp -r $benchmark_results_dir ${datasets_dir_origin}/.
+cp -r $benchmark_results_dir ${datasets_dir_origin}/${scenarios_results}/.
 
 scenario="calibration_3sw_srtm3_ramdisk"
 benchmark_results_dir="${datasets_dir}/${scenarios_results}/${scenario}"
 rm -rf ${benchmark_results_dir}/*
 NO_RASTCOMP=1 ./alus_snap_comparison_report.sh "gpt ${benchmark_scripts_dir}/snap_gpt/calibration_3sw.xml -Poutput=${benchmark_results_dir}/snap_cal.tif -Pinput=${scene_sec}/manifest.safe ${calib_type_snap} -Ppolarisation=${polarization} -Pdem=\"SRTM 3Sec\"" "alus-cal -i ${scene_sec} -o ${benchmark_results_dir} -p ${polarization} -t ${calib_type} ${dem_files_3sw} --ll info" $benchmark_results_dir
-cp -r $benchmark_results_dir ${datasets_dir_origin}/.
+cp -r $benchmark_results_dir ${datasets_dir_origin}/${scenarios_results}/.
 
 scenario="coherence_1sw_srtm3_ramdisk"
 benchmark_results_dir="${datasets_dir}/${scenarios_results}/${scenario}"
 rm -rf ${benchmark_results_dir}/*
 NO_RASTCOMP=1 ./alus_snap_comparison_report.sh "gpt ${benchmark_scripts_dir}/snap_gpt/coherence_1sw_bindex.xml -Poutput=${benchmark_results_dir}/snap_coh.tif -Preference=${scene_ref}/manifest.safe -Psecondary=${scene_sec}/manifest.safe -Ppolarisation=${polarization} -Psubswath=${single_swath} -Pb_ref1=1 -Pb_ref2=10 -Pb_sec1=1 -Pb_sec2=10 -Pdem=\"SRTM 3Sec\"" "alus-coh -r ${scene_ref} -s ${scene_sec} -o ${benchmark_results_dir} --sw ${single_swath} -p ${polarization} --az_win 4 --orbit_dir ${datasets_dir}/aux --no_mask_cor ${dem_files_land} --ll info" $benchmark_results_dir
-cp -r $benchmark_results_dir ${datasets_dir_origin}/.
+cp -r $benchmark_results_dir ${datasets_dir_origin}/${scenarios_results}/.
 
 # About 70GB of RAM required for SNAP GPT
 scenario="coherence_3sw_srtm3_ramdisk"
 benchmark_results_dir="${datasets_dir}/${scenarios_results}/${scenario}"
 rm -rf ${benchmark_results_dir}/*
 NO_RASTCOMP=1 ./alus_snap_comparison_report.sh "gpt ${benchmark_scripts_dir}/snap_gpt/coherence_3sw.xml -Poutput=${benchmark_results_dir}/snap_coh.tif -Preference=${scene_ref}/manifest.safe -Psecondary=${scene_sec}/manifest.safe -Ppolarisation=${polarization} -Pdem=\"SRTM 3Sec\"" "alus-coh -r ${scene_ref} -s ${scene_sec} -o ${benchmark_results_dir} -p ${polarization} --az_win 4 --orbit_dir ${datasets_dir}/aux --no_mask_cor ${dem_files_3sw} --ll info" $benchmark_results_dir
-cp -r $benchmark_results_dir ${datasets_dir_origin}/.
+cp -r $benchmark_results_dir ${datasets_dir_origin}/${scenarios_results}/.
 
 rm -rf ${ram_disk_path}/*
 sudo umount ${ram_disk_path}
