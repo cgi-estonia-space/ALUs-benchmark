@@ -7,7 +7,7 @@ function print_help {
     echo "$0 <alus benchmark repo dir> <datasets dir>"
 }
 
-if [ $# -lt 1 ]; then
+if [ $# -lt 2 ]; then
     echo "Wrong count of input arguments"
     print_help
     exit 1
