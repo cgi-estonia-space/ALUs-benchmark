@@ -15,7 +15,7 @@ fi
 
 benchmark_scripts_dir="$1"
 datasets_dir="$2"
-run_repeats=5
+run_repeats=3
 
 cd $benchmark_scripts_dir
 scenarios_results="results"

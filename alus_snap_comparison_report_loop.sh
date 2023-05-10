@@ -19,6 +19,7 @@ output_dir="$3"
 loop_times=$4
 
 ./alus_snap_comparison_report.sh "$snap_gpt_cmd" "$alus_cmd" "$output_dir" "sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'"
-for i in $(seq 1 $loop_times); do
+for ((i=1; i<=$loop_times; i++)); do
     NO_RASTCOMP=1 ./alus_snap_comparison_report.sh "$snap_gpt_cmd" "$alus_cmd" "$output_dir"  
 done
+

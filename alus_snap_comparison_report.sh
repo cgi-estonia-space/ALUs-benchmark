@@ -31,7 +31,7 @@ if [ $# -eq 4 ]; then
     eval "$4"
 fi
 alus_cmd_log=$output_dir/alus_cmd.txt
-(time $alus_cmd) 2>&1 | tee $alus_cmd_log
+(time eval "$alus_cmd") 2>&1 | tee $alus_cmd_log
 
 # Sort by date created
 results=($(find $output_dir -maxdepth 1 -name "*.tif" -printf "%T@\t%p\n" | sort -n | cut -f2-))
@@ -39,8 +39,11 @@ results=($(find $output_dir -maxdepth 1 -name "*.tif" -printf "%T@\t%p\n" | sort
 product_base_name="${results[-1]%.*}"
 snap_no_data_fn=${product_base_name}_snap.tif
 
-echo "creating NODATA to SNAP results..."
-gdal_calc.py -A ${results[-2]} --outfile=$snap_no_data_fn --calc="A*(A>0)" --NoDataValue=0
+
+if [[ -z "${NO_RASTCOMP}" ]]; then
+    echo "creating NODATA to SNAP results..."
+    gdal_calc.py -A ${results[-2]} --outfile=$snap_no_data_fn --calc="A*(A>0)" --NoDataValue=0
+fi
 
 alus_result_fn=${results[-1]}
 tmp_file_stats=$output_dir/stats.tmp

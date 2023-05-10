@@ -17,7 +17,7 @@
       <subswath>IW1</subswath>
       <selectedPolarisations>${polarisation}</selectedPolarisations>
       <firstBurstIndex>1</firstBurstIndex>
-      <lastBurstIndex>9</lastBurstIndex>
+      <lastBurstIndex>9999</lastBurstIndex>
       <wktAoi/>
     </parameters>
   </node>
@@ -30,7 +30,7 @@
       <subswath>IW2</subswath>
       <selectedPolarisations>${polarisation}</selectedPolarisations>
       <firstBurstIndex>1</firstBurstIndex>
-      <lastBurstIndex>9</lastBurstIndex>
+      <lastBurstIndex>9999</lastBurstIndex>
       <wktAoi/>
     </parameters>
   </node>
@@ -43,7 +43,7 @@
       <subswath>IW3</subswath>
       <selectedPolarisations>${polarisation}</selectedPolarisations>
       <firstBurstIndex>1</firstBurstIndex>
-      <lastBurstIndex>9</lastBurstIndex>
+      <lastBurstIndex>9999</lastBurstIndex>
       <wktAoi/>
     </parameters>
   </node>

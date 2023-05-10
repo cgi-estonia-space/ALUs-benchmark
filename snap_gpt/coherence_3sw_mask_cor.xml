@@ -43,7 +43,7 @@
             <subswath>IW1</subswath>
             <selectedPolarisations>${polarisation}</selectedPolarisations>
             <firstBurstIndex>1</firstBurstIndex>
-            <lastBurstIndex>9999</lastBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
         </parameters>
     </node>
     <node id="split_secondary_iw1">
@@ -55,7 +55,7 @@
             <subswath>IW1</subswath>
             <selectedPolarisations>${polarisation}</selectedPolarisations>
             <firstBurstIndex>1</firstBurstIndex>
-            <lastBurstIndex>9999</lastBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
         </parameters>
     </node>
     <node id="back-geocoding_iw1">
@@ -68,7 +68,7 @@
             <demName>${dem}</demName>
             <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
             <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
-            <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
+            <maskOutAreaWithoutElevation>true</maskOutAreaWithoutElevation>
         </parameters>
     </node>
     <node id="coherence_iw1">
@@ -103,7 +103,7 @@
             <subswath>IW2</subswath>
             <selectedPolarisations>${polarisation}</selectedPolarisations>
             <firstBurstIndex>1</firstBurstIndex>
-            <lastBurstIndex>9999</lastBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
         </parameters>
     </node>
     <node id="split_secondary_iw2">
@@ -115,7 +115,7 @@
             <subswath>IW2</subswath>
             <selectedPolarisations>${polarisation}</selectedPolarisations>
             <firstBurstIndex>1</firstBurstIndex>
-            <lastBurstIndex>9999</lastBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
         </parameters>
     </node>
     <node id="back-geocoding_iw2">
@@ -128,7 +128,7 @@
             <demName>${dem}</demName>
             <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
             <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
-            <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
+            <maskOutAreaWithoutElevation>true</maskOutAreaWithoutElevation>
         </parameters>
     </node>
     <node id="coherence_iw2">
@@ -163,7 +163,7 @@
             <subswath>IW3</subswath>
             <selectedPolarisations>${polarisation}</selectedPolarisations>
             <firstBurstIndex>1</firstBurstIndex>
-            <lastBurstIndex>9999</lastBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
         </parameters>
     </node>
     <node id="split_secondary_iw3">
@@ -175,7 +175,7 @@
             <subswath>IW3</subswath>
             <selectedPolarisations>${polarisation}</selectedPolarisations>
             <firstBurstIndex>1</firstBurstIndex>
-            <lastBurstIndex>9999</lastBurstIndex>
+            <lastBurstIndex>9</lastBurstIndex>
         </parameters>
     </node>
     <node id="back-geocoding_iw3">
@@ -188,7 +188,7 @@
             <demName>${dem}</demName>
             <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
             <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
-            <maskOutAreaWithoutElevation>false</maskOutAreaWithoutElevation>
+            <maskOutAreaWithoutElevation>true</maskOutAreaWithoutElevation>
         </parameters>
     </node>
     <node id="coherence_iw3">
