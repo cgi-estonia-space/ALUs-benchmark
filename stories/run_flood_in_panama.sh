@@ -74,6 +74,11 @@ set +x
 
 datasets_dir_origin=${datasets_dir}
 datasets_dir=${ram_disk_path}
+scene_ref="${datasets_dir}/S1A_IW_SLC__1SDV_20200904T111450_20200904T111520_034208_03F970_E017.SAFE"
+scene_sec="${datasets_dir}/S1A_IW_SLC__1SDV_20200916T111451_20200916T111520_034383_03FF98_80D6.SAFE"
+dem_files_3sw="--dem ${datasets_dir}/aux/srtm_20_11.tif --dem ${datasets_dir}/aux/srtm_20_10.tif"
+dem_files_land="--dem ${datasets_dir}/aux/srtm_20_11.tif"
+
 
 scenario="calibration_1sw_srtm3_ramdisk"
 benchmark_results_dir="${datasets_dir}/${scenarios_results}/${scenario}"

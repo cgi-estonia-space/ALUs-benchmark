@@ -58,6 +58,10 @@ set +x
 
 datasets_dir_origin=${datasets_dir}
 datasets_dir=${ram_disk_path}
+scene_ref="${datasets_dir}/S1B_IW_SLC__1SDV_20200730T034254_20200730T034321_022695_02B131_E8DD.SAFE"
+scene_sec="${datasets_dir}/S1A_IW_SLC__1SDV_20200805T034334_20200805T034401_033766_03E9F9_52F6.SAFE"
+dem_files_3sw="--dem ${datasets_dir}/aux/srtm_43_05.tif --dem ${datasets_dir}/aux/srtm_43_06.tif --dem ${datasets_dir}/aux/srtm_44_06.tif"
+dem_files_land="--dem ${datasets_dir}/aux/srtm_44_06.tif"
 
 scenario="coherence_1sw_srtm3_ramdisk"
 benchmark_results_dir="${datasets_dir}/${scenarios_results}/${scenario}"

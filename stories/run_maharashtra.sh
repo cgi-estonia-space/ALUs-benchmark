@@ -64,6 +64,11 @@ set +x
 
 datasets_dir_origin=${datasets_dir}
 datasets_dir=${ram_disk_path}
+scene="${datasets_dir}/S1A_IW_SLC__1SDV_20210722T005537_20210722T005604_038883_049695_2E58.SAFE"
+dem_files_3sw_srtm="--dem ${datasets_dir}/aux/srtm_51_09.tif --dem ${datasets_dir}/aux/srtm_52_09.tif"
+dem_files_3sw_copdem="--dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N17_00_E073_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N17_00_E074_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N17_00_E075_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N16_00_E073_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N16_00_E074_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N16_00_E075_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N15_00_E074_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N15_00_E075_00_DEM.tif"
+dem_file_single_swath_srtm="--dem ${datasets_dir}/aux/srtm_51_09.tif"
+dem_files_single_swath_copdem="--dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N17_00_E073_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N17_00_E074_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N16_00_E073_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N16_00_E074_00_DEM.tif --dem ${datasets_dir}/aux/Copernicus_DSM_COG_10_N15_00_E074_00_DEM.tif"
 
 scenario="calibration_1sw_srtm3_ramdisk"
 benchmark_results_dir="${datasets_dir}/${scenarios_results}/${scenario}"
